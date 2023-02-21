@@ -36,7 +36,8 @@
         </activity>
         <activity
             android:name=".FilmDetail"
-            android:exported="true">
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

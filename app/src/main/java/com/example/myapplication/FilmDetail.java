@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class FilmDetail extends AppCompatActivity {
@@ -14,6 +15,8 @@ public class FilmDetail extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.film_detail_layout);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Detail Of Film");
         String nameOfFilm = getIntent().getStringExtra("name");
         watchMovieBtn = findViewById(R.id.watchMovieBtn);
         watchMovieBtn.setOnClickListener(new View.OnClickListener() {
