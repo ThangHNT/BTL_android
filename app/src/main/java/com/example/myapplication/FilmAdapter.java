@@ -8,9 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 public class FilmAdapter extends BaseAdapter {
     Context context;
@@ -56,6 +58,13 @@ public class FilmAdapter extends BaseAdapter {
         return view;
     }
 
+    public static String removeAccent(String s) {
+        String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        temp = pattern.matcher(temp).replaceAll("");
+        return temp.replaceAll("đ", "d");
+    }
+
     public void setList(String nameOfFilm, List<Film> ds){
         if(nameOfFilm.length() == 0){
             this.list = ds;
@@ -63,10 +72,10 @@ public class FilmAdapter extends BaseAdapter {
         }
         List<Film> films = new ArrayList<>();
         for(int i = 0; i < this.list.size(); i++){
-            String title = list.get(i).getName().toLowerCase(Locale.ROOT);
-            if(title.contains(nameOfFilm.toLowerCase(Locale.ROOT))){
+            String title = removeAccent(list.get(i).getName().toLowerCase(Locale.ROOT));
+            String compareString = removeAccent(nameOfFilm.toLowerCase(Locale.ROOT));
+            if(title.contains(compareString)){
                 films.add(list.get(i));
-//                System.out.println("===========================" + list.get(i).getName());
             }
         }
         this.list = films;

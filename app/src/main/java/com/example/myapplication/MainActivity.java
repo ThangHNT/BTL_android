@@ -42,9 +42,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.filmList);
         filmList = new ArrayList<>();
-        filmList.add(new Film(R.drawable.one_piece,"Ngay mai anh den","Thang Hoang","250p","10/02/2023"));
-        filmList.add(new Film(R.drawable.one_piece,"Con ac mong kinh hoang","Thang Hoang","250p","10/02/2023"));
-        filmList.add(new Film(R.drawable.one_piece,"Chu cho dang iu","Thang Hoang","250p","10/02/2023"));
+        filmList.add(new Film(R.drawable.one_piece,"Thanh gươm diệt chuột","Thang Hoang","250p","10/02/2023","Anime henxuyen","Nhật Bổn"));
+        filmList.add(new Film(R.drawable.one_piece,"Người nghiện sống lương thiện","Thang Hoang","250p","10/02/2023","Hề hước","Trung Quốc"));
+        filmList.add(new Film(R.drawable.one_piece,"Ngày mai anh đến","Thang Hoang","250p","10/02/2023","tinh cam","Viet Nam"));
+        filmList.add(new Film(R.drawable.one_piece,"Hôm sau em đi","Thang Hoang","250p","10/02/2023","tinh cam","Viet Nam"));
+        filmList.add(new Film(R.drawable.one_piece,"Cơn ác mộng kinh hoàng","Thang Hoang","250p","10/02/2023","Kinh dị","Bồ Tao Nha"));
+        filmList.add(new Film(R.drawable.one_piece,"Chu cho đáng yêu","Thang Hoang","250p","10/02/2023","Gia đình","Hàn Quốc"));
+        filmList.add(new Film(R.drawable.one_piece,"Hành trình vô tận","Thang Hoang","250p","10/02/2023","Phiêu lưu","Tàu"));
         filmAdapter = new FilmAdapter(MainActivity.this,R.layout.film_item_layout,filmList);
         listView.setAdapter(filmAdapter);
 
