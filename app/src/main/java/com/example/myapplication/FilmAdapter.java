@@ -8,7 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class FilmAdapter extends BaseAdapter {
     Context context;
@@ -39,7 +41,7 @@ public class FilmAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater =(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view =inflater.inflate(layout,null);
+        view = inflater.inflate(layout,null);
         ImageView avatar = view.findViewById(R.id.filmAvatar);
         TextView name = view.findViewById(R.id.filmName);
         TextView director = view.findViewById(R.id.filmDirector);
@@ -52,5 +54,21 @@ public class FilmAdapter extends BaseAdapter {
         duration.setText(film.getDuration());
         releaseDate.setText(film.getReleaseDate());
         return view;
+    }
+
+    public void setList(String nameOfFilm, List<Film> ds){
+        if(nameOfFilm.length() == 0){
+            this.list = ds;
+            return;
+        }
+        List<Film> films = new ArrayList<>();
+        for(int i = 0; i < this.list.size(); i++){
+            String title = list.get(i).getName().toLowerCase(Locale.ROOT);
+            if(title.contains(nameOfFilm.toLowerCase(Locale.ROOT))){
+                films.add(list.get(i));
+//                System.out.println("===========================" + list.get(i).getName());
+            }
+        }
+        this.list = films;
     }
 }

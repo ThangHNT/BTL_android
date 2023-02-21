@@ -80,6 +80,22 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_menu,menu);
 
+        MenuItem  menuItem = menu.findItem(R.id.searchBtn);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filmAdapter.setList(newText, filmList);
+                filmAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -101,21 +117,10 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.searchBtn:
-                goToSearchActivity();
 //                Toast.makeText(this,"Ban chon search",Toast.LENGTH_LONG).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void goToSearchActivity() {
-        Intent intent = new Intent(MainActivity.this,Search.class);
-        ArrayList<String> filmName = new ArrayList<>();
-        for(Film f : filmList){
-            filmName.add(f.getName());
-        }
-        intent.putStringArrayListExtra("filmList",filmName);
-        startActivity(intent);
     }
 
     private void openFilmDetail(int position){
