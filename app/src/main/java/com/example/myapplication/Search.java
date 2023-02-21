@@ -19,7 +19,6 @@ public class Search extends AppCompatActivity {
     ArrayAdapter<String> resultsAdapter;
     ListView searchListView ;
     SearchView searchView;
-    String[] a = {"thang","long","nam","toan","hai"};
 
     @SuppressLint("MissingInflatedId")
     @Override

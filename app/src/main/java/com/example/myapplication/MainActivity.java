@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     List<Film> filmList;
     FilmAdapter filmAdapter;
     ListView listView;
+    Button categoryBtn;
 
 
     @SuppressLint("MissingInflatedId")
@@ -47,15 +49,28 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(filmAdapter);
 
         selectFilm();
+        categoryBtn = findViewById(R.id.categoryBtn);
+        categoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCategoryMenu();
+            }
+        });
 
     }
 
+    private void showCategoryMenu(){
+        PopupMenu popupMenu = new PopupMenu(this,categoryBtn);
+        popupMenu.getMenuInflater().inflate(R.menu.category_popup_menu, popupMenu.getMenu());
+        popupMenu.show();
+    }
+
+    // khi chon film bat ki trong ds
     private void selectFilm() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openFilmVideo(position);
-//                Toast.makeText(MainActivity.this, "film so " + position , Toast.LENGTH_SHORT).show();
+                openFilmDetail(position);
             }
         });
     }
@@ -103,12 +118,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void openFilmVideo(int position){
-        Intent intent = new Intent(MainActivity.this, FilmVideo.class);
+    private void openFilmDetail(int position){
+        Intent intent = new Intent(MainActivity.this, FilmDetail.class);
         Film film = filmList.get(position);
         intent.putExtra("name",film.getName());
-        intent.putExtra("director",film.getDirector());
-
         startActivity(intent);
     }
 
