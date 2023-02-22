@@ -65,16 +65,18 @@ public class FilmAdapter extends BaseAdapter {
         return temp.replaceAll("đ", "d");
     }
 
-    public void setList(String nameOfFilm, List<Film> ds){
-        if(nameOfFilm.length() == 0){
-            this.list = ds;
-            return;
-        }
+    public void filterFilm(List<Film> ds,String text,String typeOfFilter){
+        this.list = ds;
         List<Film> films = new ArrayList<>();
         for(int i = 0; i < this.list.size(); i++){
-            String title = removeAccent(list.get(i).getName().toLowerCase(Locale.ROOT));
-            String compareString = removeAccent(nameOfFilm.toLowerCase(Locale.ROOT));
-            if(title.contains(compareString)){
+            String type = "";
+            if(typeOfFilter == "name"){
+                type = removeAccent(list.get(i).getName().toLowerCase(Locale.ROOT));
+            } else if(typeOfFilter == "category"){
+                type = removeAccent(list.get(i).getCategory().toLowerCase(Locale.ROOT));
+            }
+            String compareString = removeAccent(text.toLowerCase(Locale.ROOT));
+            if(type.contains(compareString)){
                 films.add(list.get(i));
             }
         }

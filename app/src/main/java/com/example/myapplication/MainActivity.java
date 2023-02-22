@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     FilmAdapter filmAdapter;
     ListView listView;
     Button categoryBtn;
+    SearchView searchView;
 
 
     @SuppressLint("MissingInflatedId")
@@ -42,13 +45,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.filmList);
         filmList = new ArrayList<>();
-        filmList.add(new Film(R.drawable.one_piece,"Thanh gươm diệt chuột","Thang Hoang","250p","10/02/2023","Anime henxuyen","Nhật Bổn"));
-        filmList.add(new Film(R.drawable.one_piece,"Người nghiện sống lương thiện","Thang Hoang","250p","10/02/2023","Hề hước","Trung Quốc"));
-        filmList.add(new Film(R.drawable.one_piece,"Ngày mai anh đến","Thang Hoang","250p","10/02/2023","tinh cam","Viet Nam"));
+        filmList.add(new Film(R.drawable.one_piece,"Người Rơi","Thang Hoang","250p","10/02/2023","Hành Động","Anh"));
+        filmList.add(new Film(R.drawable.one_piece,"3 chú lợn con","Thang Hoang","250p","10/02/2023","Thiếu Nhi","Mỹ"));
+        filmList.add(new Film(R.drawable.one_piece,"Thanh gươm diệt chuột","Thang Hoang","250p","10/02/2023","Anime","Nhật Bổn"));
+        filmList.add(new Film(R.drawable.one_piece,"Người nghiện sống lương thiện","Thang Hoang","250p","10/02/2023","Hài Hước","Trung Quốc"));
+        filmList.add(new Film(R.drawable.one_piece,"Ngày mai anh đến","Thang Hoang","250p","10/02/2023","Tình cảm","Viet Nam"));
         filmList.add(new Film(R.drawable.one_piece,"Hôm sau em đi","Thang Hoang","250p","10/02/2023","tinh cam","Viet Nam"));
         filmList.add(new Film(R.drawable.one_piece,"Cơn ác mộng kinh hoàng","Thang Hoang","250p","10/02/2023","Kinh dị","Bồ Tao Nha"));
-        filmList.add(new Film(R.drawable.one_piece,"Chu cho đáng yêu","Thang Hoang","250p","10/02/2023","Gia đình","Hàn Quốc"));
+        filmList.add(new Film(R.drawable.one_piece,"Chú chó đáng yêu","Thang Hoang","250p","10/02/2023","Gia đình","Hàn Quốc"));
         filmList.add(new Film(R.drawable.one_piece,"Hành trình vô tận","Thang Hoang","250p","10/02/2023","Phiêu lưu","Tàu"));
+        filmList.add(new Film(R.drawable.one_piece,"Anh thợ sửa ống nước may mắn","Thang Hoang","120p","10/02/2023","18+","Nhật Bản"));
         filmAdapter = new FilmAdapter(MainActivity.this,R.layout.film_item_layout,filmList);
         listView.setAdapter(filmAdapter);
 
@@ -63,9 +69,43 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // hien thi the loai phim
     private void showCategoryMenu(){
         PopupMenu popupMenu = new PopupMenu(this,categoryBtn);
         popupMenu.getMenuInflater().inflate(R.menu.category_popup_menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_category:
+                        filmAdapter.filterFilm(filmList,"Hành Động","category");
+                        break;
+                    case R.id.family_category:
+                        filmAdapter.filterFilm(filmList,"Gia Đình","category");
+                        break;
+                    case R.id.humorous_category:
+                        filmAdapter.filterFilm(filmList,"Hài Hước","category");
+                        break;
+                    case R.id.emotional_category:
+                        filmAdapter.filterFilm(filmList,"Tình Cảm","category");
+                        break;
+                    case R.id.horrified_category:
+                        filmAdapter.filterFilm(filmList,"Kinh dị","category");
+                        break;
+                    case R.id.anime_category:
+                        filmAdapter.filterFilm(filmList,"Anime","category");
+                        break;
+                    case R.id.kids_category:
+                        filmAdapter.filterFilm(filmList,"Thiếu nhi","category");
+                        break;
+                    case R.id.adult_category:
+                        filmAdapter.filterFilm(filmList,"18+","category");
+                        break;
+                }
+                filmAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
         popupMenu.show();
     }
 
@@ -85,9 +125,8 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.home_menu,menu);
 
         MenuItem  menuItem = menu.findItem(R.id.searchBtn);
-        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView = (SearchView) menuItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -95,12 +134,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filmAdapter.setList(newText, filmList);
+                filmAdapter.filterFilm(filmList,newText,"name");
                 filmAdapter.notifyDataSetChanged();
                 return false;
             }
         });
-
         return super.onCreateOptionsMenu(menu);
     }
 
