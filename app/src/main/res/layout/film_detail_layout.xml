@@ -23,6 +23,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
@@ -41,6 +42,31 @@
                 android:id="@+id/filmNameDetail"
                 android:layout_marginLeft="10dp"
                 android:text="Ngay mai anh đến"
+                android:textStyle="normal"
+                android:textColor="#009688"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/titleFilmDirector"
+                android:text="Đạo diễn :"
+                android:textSize="16sp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/filmDirectorDetail"
+                android:layout_marginLeft="10dp"
+                android:textAlignment="textStart"
+                android:text="Thang Hoang"
                 android:textStyle="normal"
                 android:textColor="#009688"
                 android:textSize="16sp"
@@ -111,6 +137,31 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/filmDurationDetail"
+                android:layout_marginLeft="10dp"
+                android:textAlignment="textStart"
+                android:text="108p"
+                android:textStyle="normal"
+                android:textColor="#009688"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/titleFilmReleaseDate"
+                android:text="Thời lượng :"
+                android:textSize="16sp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/filmReleaseDateDetail"
                 android:layout_marginLeft="10dp"
                 android:textAlignment="textStart"
                 android:text="108p"

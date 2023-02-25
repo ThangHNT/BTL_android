@@ -171,14 +171,15 @@ public class MainActivity extends AppCompatActivity {
     private void openFilmDetail(int position){
         Intent intent = new Intent(MainActivity.this, FilmDetail.class);
         Film film = filmList.get(position);
-        intent.putExtra("name",film.getName());
-        intent.putExtra("id",film.getId());
-        intent.putExtra("director",film.getDirector());
-        intent.putExtra("duration",film.getDuration());
-        intent.putExtra("realeaseDate",film.getReleaseDate());
-        intent.putExtra("catefory",film.getCategory());
-        intent.putExtra("nation",film.getNation());
-
+        ArrayList<String> filmDetail = new ArrayList<>();
+        filmDetail.add(film.getId());
+        filmDetail.add(film.getName());
+        filmDetail.add(film.getDirector());
+        filmDetail.add(film.getDuration());
+        filmDetail.add(film.getNation());
+        filmDetail.add(film.getReleaseDate());
+        filmDetail.add(film.getCategory());
+        intent.putStringArrayListExtra("film", filmDetail);
         startActivity(intent);
     }
 
