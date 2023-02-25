@@ -1,17 +1,18 @@
 package com.example.myapplication;
 
 public class Film {
-    private int avatar;
     private String name;
     private String director;
     private String duration;
     private String releaseDate;
     private String category;
     private String nation;
-    private String video;
+    private String id;
+    private String description;
 
-    public Film(int avatar, String name, String director, String duration, String releaseDate, String category, String nation) {
-        this.avatar = avatar;
+
+    public Film(String id, String name, String director, String duration, String releaseDate, String category, String nation) {
+        this.id = id;
         this.name = name;
         this.director = director;
         this.duration = duration;
@@ -20,12 +21,12 @@ public class Film {
         this.nation = nation;
     }
 
-    public int getAvatar() {
-        return avatar;
+    public String getId() {
+        return id;
     }
 
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -79,14 +80,13 @@ public class Film {
     @Override
     public String toString() {
         return "Film{" +
-                "avatar=" + avatar +
                 ", name='" + name + '\'' +
                 ", director='" + director + '\'' +
                 ", duration='" + duration + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
                 ", category='" + category + '\'' +
                 ", nation='" + nation + '\'' +
-                ", video='" + video + '\'' +
+                ", id='" + id + '\'' +
                 '}';
     }
 }

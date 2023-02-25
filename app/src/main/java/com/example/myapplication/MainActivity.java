@@ -45,16 +45,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.filmList);
         filmList = new ArrayList<>();
-        filmList.add(new Film(R.drawable.one_piece,"Người Rơi","Thang Hoang","250p","10/02/2023","Hành Động","Anh"));
-        filmList.add(new Film(R.drawable.one_piece,"3 chú lợn con","Thang Hoang","250p","10/02/2023","Thiếu Nhi","Mỹ"));
-        filmList.add(new Film(R.drawable.one_piece,"Thanh gươm diệt chuột","Thang Hoang","250p","10/02/2023","Anime","Nhật Bổn"));
-        filmList.add(new Film(R.drawable.one_piece,"Người nghiện sống lương thiện","Thang Hoang","250p","10/02/2023","Hài Hước","Trung Quốc"));
-        filmList.add(new Film(R.drawable.one_piece,"Ngày mai anh đến","Thang Hoang","250p","10/02/2023","Tình cảm","Viet Nam"));
-        filmList.add(new Film(R.drawable.one_piece,"Hôm sau em đi","Thang Hoang","250p","10/02/2023","tinh cam","Viet Nam"));
-        filmList.add(new Film(R.drawable.one_piece,"Cơn ác mộng kinh hoàng","Thang Hoang","250p","10/02/2023","Kinh dị","Bồ Tao Nha"));
-        filmList.add(new Film(R.drawable.one_piece,"Chú chó đáng yêu","Thang Hoang","250p","10/02/2023","Gia đình","Hàn Quốc"));
-        filmList.add(new Film(R.drawable.one_piece,"Hành trình vô tận","Thang Hoang","250p","10/02/2023","Phiêu lưu","Tàu"));
-        filmList.add(new Film(R.drawable.one_piece,"Anh thợ sửa ống nước may mắn","Thang Hoang","120p","10/02/2023","18+","Nhật Bản"));
+
+//        filmList.add(new Film("bxEw6yJBeL0",))
+//        filmList.add(new Film("I3S_CBJgwbs","https://img.youtube.com/vi/I3S_CBJgwbs/sddefault.jpg","Người Rơi","Thang Hoang","250p","10/02/2023","Hành Động","Anh"));
+        filmList.add(new Film("I3S_CBJgwbs", "3 chú lợn con","Thang Hoang","250p","10/02/2023","Thiếu Nhi","Mỹ"));
+        filmList.add(new Film("dGNmaN1CI9Q", "3 chú lợn con","Thang Hoang","250p","10/02/2023","Thiếu Nhi","Mỹ"));
+//        filmList.add(new Film(R.drawable.one_piece,"Thanh gươm diệt chuột","Thang Hoang","250p","10/02/2023","Anime","Nhật Bổn"));
+//        filmList.add(new Film(R.drawable.one_piece,"Người nghiện sống lương thiện","Thang Hoang","250p","10/02/2023","Hài Hước","Trung Quốc"));
+//        filmList.add(new Film(R.drawable.one_piece,"Ngày mai anh đến","Thang Hoang","250p","10/02/2023","Tình cảm","Viet Nam"));
+//        filmList.add(new Film(R.drawable.one_piece,"Hôm sau em đi","Thang Hoang","250p","10/02/2023","tinh cam","Viet Nam"));
+//        filmList.add(new Film(R.drawable.one_piece,"Cơn ác mộng kinh hoàng","Thang Hoang","250p","10/02/2023","Kinh dị","Bồ Tao Nha"));
+//        filmList.add(new Film(R.drawable.one_piece,"Chú chó đáng yêu","Thang Hoang","250p","10/02/2023","Gia đình","Hàn Quốc"));
+//        filmList.add(new Film(R.drawable.one_piece,"Hành trình vô tận","Thang Hoang","250p","10/02/2023","Phiêu lưu","Tàu"));
+//        filmList.add(new Film(R.drawable.one_piece,"Anh thợ sửa ống nước may mắn","Thang Hoang","120p","10/02/2023","18+","Nhật Bản"));
         filmAdapter = new FilmAdapter(MainActivity.this,R.layout.film_item_layout,filmList);
         listView.setAdapter(filmAdapter);
 
@@ -169,6 +172,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, FilmDetail.class);
         Film film = filmList.get(position);
         intent.putExtra("name",film.getName());
+        intent.putExtra("id",film.getId());
+        intent.putExtra("director",film.getDirector());
+        intent.putExtra("duration",film.getDuration());
+        intent.putExtra("realeaseDate",film.getReleaseDate());
+        intent.putExtra("catefory",film.getCategory());
+        intent.putExtra("nation",film.getNation());
+
         startActivity(intent);
     }
 

@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +58,8 @@ public class FilmAdapter extends BaseAdapter {
         TextView duration = view.findViewById(R.id.filmDuration);
         TextView releaseDate = view.findViewById(R.id.filmReleaseDate);
         Film film = list.get(position);
-        avatar.setImageResource(film.getAvatar());
+        String url = "https://img.youtube.com/vi/" +film.getId() + "/sddefault.jpg";
+        Picasso.get().load(url).into(avatar);
         name.setText(film.getName());
         director.setText(film.getDirector());
         duration.setText(film.getDuration());
