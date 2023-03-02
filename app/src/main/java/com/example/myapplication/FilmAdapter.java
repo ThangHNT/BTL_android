@@ -76,6 +76,7 @@ public class FilmAdapter extends BaseAdapter {
 
     public void filterFilm(List<Film> ds,String text,String typeOfFilter){
         this.list = ds;
+        if(text.length() == 0) return;
         List<Film> films = new ArrayList<>();
         for(int i = 0; i < this.list.size(); i++){
             String type = "";
